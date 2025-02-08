@@ -1,0 +1,28 @@
+package PaketDahilEtme;
+
+import java.sql.*;
+
+
+public class Main {
+	
+	public static void main(String[] args) throws SQLException {
+		DbHelper dbHelper = new DbHelper();
+		Statement statement = null;
+		ResultSet resultSet; // Sonuçları Getirir ResultSet
+		Connection connection = null;
+		try {
+			
+			connection = dbHelper.getConnection();
+			statement = connection.createStatement();
+			resultSet = statement.executeQuery("select id,isim,soyisim from Calisma");
+		}
+		catch (SQLException e) {
+			dbHelper.showErrorMessage(e);
+		}
+		finally {
+			connection.close();
+		}
+
+	}
+
+}

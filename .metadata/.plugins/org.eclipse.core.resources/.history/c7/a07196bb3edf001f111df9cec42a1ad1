@@ -1,0 +1,30 @@
+package Insertİslemleri;
+
+import java.sql.*;
+
+public class Main {
+
+	public static void main(String[] args) throws SQLException {
+		DbHelper dbHelper = new DbHelper();
+		PreparedStatement statement = null; // insert işlemi için PreparedStatement kullanırız.
+		ResultSet resultSet; // Sonuçları Getirir ResultSet
+		Connection connection = null;
+		try {
+			
+			connection = dbHelper.getConnection();
+		statement = connection.prepareStatement("INSERT INTO Calisma(id,isim,soyisim) values (5,'Aslı','Kuş')");
+		statement.executeUpdate(); // Kayıt Eklemek için executeUpdate Yapmamız lazım.
+			System.out.println("Kayıt Eklendi..");
+		}
+		catch (SQLException e) {
+			dbHelper.showErrorMessage(e);
+		}
+		finally {
+			statement.close();
+			connection.close();
+		}
+
+
+	}
+
+}

@@ -1,0 +1,33 @@
+package Updateİslemleri;
+
+import java.sql.*;
+
+
+
+public class Main {
+
+	public static void main(String[] args) throws SQLException {
+		DbHelper dbHelper = new DbHelper();
+		PreparedStatement statement = null; 
+		ResultSet resultSet;
+		Connection connection = null;
+		try {
+			
+			connection = dbHelper.getConnection();
+		String sql = "Update Calisma set id = 3 where isim = 'Samet'"; 
+		statement = connection.prepareStatement(sql);
+
+			System.out.println("Kayıt Eklendi..");
+		}
+		catch (SQLException e) {
+			dbHelper.showErrorMessage(e);
+		}
+		finally {
+			statement.close();
+			connection.close();
+		}
+
+
+	}
+
+}

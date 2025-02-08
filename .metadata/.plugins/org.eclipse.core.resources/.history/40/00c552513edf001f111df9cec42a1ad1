@@ -1,0 +1,29 @@
+package Insertİslemleri;
+
+import java.sql.*;
+
+public class Main {
+
+	public static void main(String[] args) throws SQLException {
+		DbHelper dbHelper = new DbHelper();
+		PreparedStatement statement = null;
+		ResultSet resultSet; // Sonuçları Getirir ResultSet
+		Connection connection = null;
+		try {
+			
+			connection = dbHelper.getConnection();
+			resultSet = statement.executeQuery();
+			statement = connection.prepareStatement("INSERT INTO Calisma(id,isim,soyisim) values (5,'Aslı','Kuş');");
+			System.out.println("Kayıt Eklendi..");
+		}
+		catch (SQLException e) {
+			dbHelper.showErrorMessage(e);
+		}
+		finally {
+			connection.close();
+		}
+
+
+	}
+
+}

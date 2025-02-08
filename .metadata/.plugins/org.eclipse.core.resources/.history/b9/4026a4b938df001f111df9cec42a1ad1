@@ -1,0 +1,30 @@
+package PaketDahilEtme;
+
+import java.beans.Statement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class Main {
+	
+	public static void main(String[] args) throws SQLException {
+		DbHelper dbHelper = new DbHelper();
+		Statement statement = null;
+		ResultSet resultSet; // Sonuçları Getirir ResultSet
+		Connection connection = null;
+		try {
+			
+			connection = dbHelper.getConnection();
+			statement = (Statement) connection.createStatement();
+			resultSet = (Statement) statement.execute();
+		}
+		catch (SQLException e) {
+			dbHelper.showErrorMessage(e);
+		}
+		finally {
+			connection.close();
+		}
+
+	}
+
+}

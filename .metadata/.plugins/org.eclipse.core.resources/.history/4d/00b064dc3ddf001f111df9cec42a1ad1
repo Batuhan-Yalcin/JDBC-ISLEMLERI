@@ -1,0 +1,36 @@
+package Insertİslemleri;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+import PaketDahilEtme.CalismaTablo;
+import PaketDahilEtme.DbHelper;
+
+public class Main {
+
+	public static void main(String[] args) throws SQLException {
+		DbHelper dbHelper = new DbHelper();
+		Statement statement = null;
+		ResultSet resultSet; // Sonuçları Getirir ResultSet
+		Connection connection = null;
+		try {
+			
+			connection = dbHelper.getConnection();
+			statement = connection.createStatement();
+			resultSet = statement.executeQuery("INSERT INTO Calisma(id,isim,soyisim) values (5,'Aslı','Kuş');");
+			
+		}
+		catch (SQLException e) {
+			dbHelper.showErrorMessage(e);
+		}
+		finally {
+			connection.close();
+		}
+
+
+	}
+
+}
